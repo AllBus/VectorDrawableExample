@@ -1,5 +1,8 @@
 package com.kos.vectordrawableview;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.View;
 
@@ -38,9 +41,20 @@ public class MainActivity extends AppCompatActivity {
 
 				//Load from file or input stream
 				//VectorDrawableReader.loadFromVectorDrawableFile(new File("..."));
-				XmlVectorDrawable.VectorDrawableCompatState res = VectorDrawableReader.loadFromVectorDrawableStream(targetStream);
+				XmlVectorDrawable.VectorDrawableCompatState drawable = VectorDrawableReader.loadFromVectorDrawableStream(targetStream);
 				XmlView imageView = findViewById(R.id.image);
-				imageView.fromVectorState(res);
+				imageView.fromVectorState(drawable);
+
+				//Or draw in canvas
+				Rect rect=new Rect();
+				int width = 100;
+				int height = 100;
+				VectorDrawableReader.getRatioRect(drawable,width,height,rect);
+
+				Bitmap bitmap = Bitmap.createBitmap(rect.width(),rect.height() ,Bitmap.Config.ARGB_8888);
+				Canvas canvas = new Canvas(bitmap);
+
+				drawable.draw(canvas,rect.width(),rect.height(),null);
 
 			}
 		});
