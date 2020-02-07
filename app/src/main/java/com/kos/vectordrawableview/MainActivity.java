@@ -1,5 +1,6 @@
 package com.kos.vectordrawableview;
 
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -13,9 +14,8 @@ import com.kos.svgpreview.xml.parser.XmlView;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
